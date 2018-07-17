@@ -12,6 +12,7 @@
 		AC07756B20FD9BE8004AA20F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AC07756A20FD9BE8004AA20F /* Assets.xcassets */; };
 		AC07756E20FD9BE8004AA20F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC07756C20FD9BE8004AA20F /* LaunchScreen.storyboard */; };
 		AC07757920FD9BE8004AA20F /* QuickVoteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC07757820FD9BE8004AA20F /* QuickVoteTests.swift */; };
+		AC07758420FD9E2D004AA20F /* MultipeerConnectivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC07758320FD9E2D004AA20F /* MultipeerConnectivityManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +35,7 @@
 		AC07757420FD9BE8004AA20F /* QuickVoteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuickVoteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC07757820FD9BE8004AA20F /* QuickVoteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickVoteTests.swift; sourceTree = "<group>"; };
 		AC07757A20FD9BE8004AA20F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AC07758320FD9E2D004AA20F /* MultipeerConnectivityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipeerConnectivityManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				AC07756320FD9BE2004AA20F /* AppDelegate.swift */,
+				AC07758320FD9E2D004AA20F /* MultipeerConnectivityManager.swift */,
 				AC07756720FD9BE2004AA20F /* Main.storyboard */,
 				AC07756A20FD9BE8004AA20F /* Assets.xcassets */,
 				AC07756C20FD9BE8004AA20F /* LaunchScreen.storyboard */,
@@ -194,6 +197,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC07758420FD9E2D004AA20F /* MultipeerConnectivityManager.swift in Sources */,
 				AC07756420FD9BE2004AA20F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

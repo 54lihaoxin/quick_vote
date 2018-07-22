@@ -35,13 +35,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let displayName = UserDefaults.standard.displayName {
             let manager = MultipeerConnectivityManager(with: displayName)
             multipeerConnectivityManager = manager
-            manager.start()
+            manager.startBrowsingForPeers()
         } else { // first app launch without display name
             UIAlertController.showUserNameInputAlert(defaultValue: UIDevice.current.name) { [weak self] newName in
                 UserDefaults.standard.setDisplayName(newName)
                 let manager = MultipeerConnectivityManager(with: newName)
                 self?.multipeerConnectivityManager = manager
-                manager.start()
+                manager.startBrowsingForPeers()
             }
         }
     }

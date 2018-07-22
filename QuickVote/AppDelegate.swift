@@ -11,9 +11,18 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    var window: UIWindow?
+    let window = UIWindow(frame: UIScreen.main.bounds)
+    let mainViewController: UINavigationController = {
+        let nav = UINavigationController(rootViewController: SessionListViewController())
+        nav.navigationBar.barTintColor = .appTint
+        nav.navigationBar.tintColor = .white
+        nav.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
+        return nav
+    }()
     
     func applicationDidFinishLaunching(_ application: UIApplication) {
+        window.rootViewController = mainViewController
+        window.makeKeyAndVisible()
         MultipeerConnectivityManager.shared.start()
     }
 }

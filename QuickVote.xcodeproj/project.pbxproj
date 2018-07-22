@@ -8,11 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		AC07756420FD9BE2004AA20F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC07756320FD9BE2004AA20F /* AppDelegate.swift */; };
-		AC07756920FD9BE2004AA20F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC07756720FD9BE2004AA20F /* Main.storyboard */; };
 		AC07756B20FD9BE8004AA20F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AC07756A20FD9BE8004AA20F /* Assets.xcassets */; };
 		AC07756E20FD9BE8004AA20F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC07756C20FD9BE8004AA20F /* LaunchScreen.storyboard */; };
 		AC07757920FD9BE8004AA20F /* QuickVoteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC07757820FD9BE8004AA20F /* QuickVoteTests.swift */; };
 		AC07758420FD9E2D004AA20F /* MultipeerConnectivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC07758320FD9E2D004AA20F /* MultipeerConnectivityManager.swift */; };
+		AC8432792104DBCD00509CB9 /* SessionListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8432772104DBCD00509CB9 /* SessionListViewController.swift */; };
+		AC84327C2104DDDF00509CB9 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC84327B2104DDDF00509CB9 /* Protocols.swift */; };
+		AC84327E2104DEEA00509CB9 /* UIView+AppExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC84327D2104DEEA00509CB9 /* UIView+AppExtensions.swift */; };
+		AC8432802104E2DF00509CB9 /* UIColor+AppExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC84327F2104E2DF00509CB9 /* UIColor+AppExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,7 +31,6 @@
 /* Begin PBXFileReference section */
 		AC07756020FD9BE2004AA20F /* QuickVote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickVote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC07756320FD9BE2004AA20F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		AC07756820FD9BE2004AA20F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AC07756A20FD9BE8004AA20F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AC07756D20FD9BE8004AA20F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AC07756F20FD9BE8004AA20F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -36,6 +38,10 @@
 		AC07757820FD9BE8004AA20F /* QuickVoteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickVoteTests.swift; sourceTree = "<group>"; };
 		AC07757A20FD9BE8004AA20F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AC07758320FD9E2D004AA20F /* MultipeerConnectivityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipeerConnectivityManager.swift; sourceTree = "<group>"; };
+		AC8432772104DBCD00509CB9 /* SessionListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionListViewController.swift; sourceTree = "<group>"; };
+		AC84327B2104DDDF00509CB9 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		AC84327D2104DEEA00509CB9 /* UIView+AppExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+AppExtensions.swift"; sourceTree = "<group>"; };
+		AC84327F2104E2DF00509CB9 /* UIColor+AppExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+AppExtensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,9 +83,11 @@
 		AC07756220FD9BE2004AA20F /* QuickVote */ = {
 			isa = PBXGroup;
 			children = (
+				AC8432812104E3AD00509CB9 /* Extensions */,
 				AC07756320FD9BE2004AA20F /* AppDelegate.swift */,
 				AC07758320FD9E2D004AA20F /* MultipeerConnectivityManager.swift */,
-				AC07756720FD9BE2004AA20F /* Main.storyboard */,
+				AC84327B2104DDDF00509CB9 /* Protocols.swift */,
+				AC8432772104DBCD00509CB9 /* SessionListViewController.swift */,
 				AC07756A20FD9BE8004AA20F /* Assets.xcassets */,
 				AC07756C20FD9BE8004AA20F /* LaunchScreen.storyboard */,
 				AC07756F20FD9BE8004AA20F /* Info.plist */,
@@ -94,6 +102,15 @@
 				AC07757A20FD9BE8004AA20F /* Info.plist */,
 			);
 			path = QuickVoteTests;
+			sourceTree = "<group>";
+		};
+		AC8432812104E3AD00509CB9 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				AC84327F2104E2DF00509CB9 /* UIColor+AppExtensions.swift */,
+				AC84327D2104DEEA00509CB9 /* UIView+AppExtensions.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -179,7 +196,6 @@
 			files = (
 				AC07756E20FD9BE8004AA20F /* LaunchScreen.storyboard in Resources */,
 				AC07756B20FD9BE8004AA20F /* Assets.xcassets in Resources */,
-				AC07756920FD9BE2004AA20F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,8 +213,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC84327E2104DEEA00509CB9 /* UIView+AppExtensions.swift in Sources */,
+				AC8432792104DBCD00509CB9 /* SessionListViewController.swift in Sources */,
 				AC07758420FD9E2D004AA20F /* MultipeerConnectivityManager.swift in Sources */,
+				AC8432802104E2DF00509CB9 /* UIColor+AppExtensions.swift in Sources */,
 				AC07756420FD9BE2004AA20F /* AppDelegate.swift in Sources */,
+				AC84327C2104DDDF00509CB9 /* Protocols.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,14 +241,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		AC07756720FD9BE2004AA20F /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				AC07756820FD9BE2004AA20F /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		AC07756C20FD9BE8004AA20F /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

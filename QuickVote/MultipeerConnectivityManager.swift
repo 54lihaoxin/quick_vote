@@ -11,14 +11,12 @@ import MultipeerConnectivity
 
 final class MultipeerConnectivityManager: NSObject {
     
-    static let shared = MultipeerConnectivityManager()
-    
     fileprivate static let inviteTimeout: TimeInterval = 30
     fileprivate static let serviceType = "hxl-quickvote" // `serviceType` should be in the same format as a Bonjour service type: up to 15 characters long and valid characters include ASCII lowercase letters, numbers, and the hyphen. A short name that distinguishes itself from unrelated services is recommended.
     
     fileprivate var connectedPeerIDs: [MCPeerID] = []
     
-    private(set) lazy var peerID = MCPeerID(displayName: "\(UIDevice.current.name)-\(UUID().uuidString)") // TODO: store it in `UserDefaults`
+    let peerID: MCPeerID
     private(set) lazy var advertiser: MCNearbyServiceAdvertiser = {
         let advertiser = MCNearbyServiceAdvertiser(peer: peerID, discoveryInfo: nil, serviceType: MultipeerConnectivityManager.serviceType)
         advertiser.delegate = self
@@ -35,6 +33,11 @@ final class MultipeerConnectivityManager: NSObject {
         session.delegate = self
         return session
     }()
+    
+    init(with displayName: String) {
+        peerID = MCPeerID(displayName: displayName)
+        super.init()
+    }
 }
 
 // MARK: - API
@@ -42,7 +45,7 @@ final class MultipeerConnectivityManager: NSObject {
 extension MultipeerConnectivityManager {
     
     func start() {
-        print("\(#function)")
+        print("\(#function)", peerID.displayName)
         advertiser.startAdvertisingPeer()
         browser.startBrowsingForPeers()
     }

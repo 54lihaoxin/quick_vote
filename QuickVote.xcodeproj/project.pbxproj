@@ -16,6 +16,9 @@
 		AC84327C2104DDDF00509CB9 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC84327B2104DDDF00509CB9 /* Protocols.swift */; };
 		AC84327E2104DEEA00509CB9 /* UIView+AppExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC84327D2104DEEA00509CB9 /* UIView+AppExtensions.swift */; };
 		AC8432802104E2DF00509CB9 /* UIColor+AppExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC84327F2104E2DF00509CB9 /* UIColor+AppExtensions.swift */; };
+		AC88345C2104E4AF00C06EA6 /* UIAlertController+AppExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC88345B2104E4AF00C06EA6 /* UIAlertController+AppExtensions.swift */; };
+		AC88345E2104E5F200C06EA6 /* UIApplication+AppExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC88345D2104E5F200C06EA6 /* UIApplication+AppExtensions.swift */; };
+		AC8834602104ED0600C06EA6 /* UserDefaults+AppExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC88345F2104ED0600C06EA6 /* UserDefaults+AppExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +45,9 @@
 		AC84327B2104DDDF00509CB9 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		AC84327D2104DEEA00509CB9 /* UIView+AppExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+AppExtensions.swift"; sourceTree = "<group>"; };
 		AC84327F2104E2DF00509CB9 /* UIColor+AppExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+AppExtensions.swift"; sourceTree = "<group>"; };
+		AC88345B2104E4AF00C06EA6 /* UIAlertController+AppExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+AppExtensions.swift"; sourceTree = "<group>"; };
+		AC88345D2104E5F200C06EA6 /* UIApplication+AppExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+AppExtensions.swift"; sourceTree = "<group>"; };
+		AC88345F2104ED0600C06EA6 /* UserDefaults+AppExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+AppExtensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,8 +113,11 @@
 		AC8432812104E3AD00509CB9 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				AC88345B2104E4AF00C06EA6 /* UIAlertController+AppExtensions.swift */,
+				AC88345D2104E5F200C06EA6 /* UIApplication+AppExtensions.swift */,
 				AC84327F2104E2DF00509CB9 /* UIColor+AppExtensions.swift */,
 				AC84327D2104DEEA00509CB9 /* UIView+AppExtensions.swift */,
+				AC88345F2104ED0600C06EA6 /* UserDefaults+AppExtensions.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -214,10 +223,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC84327E2104DEEA00509CB9 /* UIView+AppExtensions.swift in Sources */,
+				AC8834602104ED0600C06EA6 /* UserDefaults+AppExtensions.swift in Sources */,
+				AC88345C2104E4AF00C06EA6 /* UIAlertController+AppExtensions.swift in Sources */,
 				AC8432792104DBCD00509CB9 /* SessionListViewController.swift in Sources */,
 				AC07758420FD9E2D004AA20F /* MultipeerConnectivityManager.swift in Sources */,
 				AC8432802104E2DF00509CB9 /* UIColor+AppExtensions.swift in Sources */,
 				AC07756420FD9BE2004AA20F /* AppDelegate.swift in Sources */,
+				AC88345E2104E5F200C06EA6 /* UIApplication+AppExtensions.swift in Sources */,
 				AC84327C2104DDDF00509CB9 /* Protocols.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -19,7 +19,7 @@
 		AC88345E2104E5F200C06EA6 /* UIApplication+AppExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC88345D2104E5F200C06EA6 /* UIApplication+AppExtensions.swift */; };
 		AC8834602104ED0600C06EA6 /* UserDefaults+AppExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC88345F2104ED0600C06EA6 /* UserDefaults+AppExtensions.swift */; };
 		AC8834642104FE7600C06EA6 /* AppNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8834632104FE7600C06EA6 /* AppNotification.swift */; };
-		AC88346821057D9400C06EA6 /* QuickVoteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC88346721057D9400C06EA6 /* QuickVoteService.swift */; };
+		AC88346821057D9400C06EA6 /* QuickVoteServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC88346721057D9400C06EA6 /* QuickVoteServer.swift */; };
 		AC88346A2105842500C06EA6 /* QuickVoteServiceBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8834692105842500C06EA6 /* QuickVoteServiceBrowser.swift */; };
 		AC88346C210592D100C06EA6 /* SessinoHostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC88346B210592D100C06EA6 /* SessinoHostViewController.swift */; };
 		AC88346E210594F100C06EA6 /* UIViewController+AppExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC88346D210594F100C06EA6 /* UIViewController+AppExtensions.swift */; };
@@ -54,7 +54,7 @@
 		AC88345D2104E5F200C06EA6 /* UIApplication+AppExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+AppExtensions.swift"; sourceTree = "<group>"; };
 		AC88345F2104ED0600C06EA6 /* UserDefaults+AppExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+AppExtensions.swift"; sourceTree = "<group>"; };
 		AC8834632104FE7600C06EA6 /* AppNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNotification.swift; sourceTree = "<group>"; };
-		AC88346721057D9400C06EA6 /* QuickVoteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickVoteService.swift; sourceTree = "<group>"; };
+		AC88346721057D9400C06EA6 /* QuickVoteServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickVoteServer.swift; sourceTree = "<group>"; };
 		AC8834692105842500C06EA6 /* QuickVoteServiceBrowser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickVoteServiceBrowser.swift; sourceTree = "<group>"; };
 		AC88346B210592D100C06EA6 /* SessinoHostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessinoHostViewController.swift; sourceTree = "<group>"; };
 		AC88346D210594F100C06EA6 /* UIViewController+AppExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+AppExtensions.swift"; sourceTree = "<group>"; };
@@ -105,10 +105,10 @@
 				AC8834712105966100C06EA6 /* Views */,
 				AC07756320FD9BE2004AA20F /* AppDelegate.swift */,
 				AC8834632104FE7600C06EA6 /* AppNotification.swift */,
-				AC88346721057D9400C06EA6 /* QuickVoteService.swift */,
+				AC84327B2104DDDF00509CB9 /* Protocols.swift */,
 				AC8834692105842500C06EA6 /* QuickVoteServiceBrowser.swift */,
 				AC8834722105992E00C06EA6 /* QuickVoteServiceClient.swift */,
-				AC84327B2104DDDF00509CB9 /* Protocols.swift */,
+				AC88346721057D9400C06EA6 /* QuickVoteServer.swift */,
 				AC07756A20FD9BE8004AA20F /* Assets.xcassets */,
 				AC07756C20FD9BE8004AA20F /* LaunchScreen.storyboard */,
 				AC07756F20FD9BE8004AA20F /* Info.plist */,
@@ -257,7 +257,7 @@
 				AC8432792104DBCD00509CB9 /* SessionListViewController.swift in Sources */,
 				AC8834732105992E00C06EA6 /* QuickVoteServiceClient.swift in Sources */,
 				AC8432802104E2DF00509CB9 /* UIColor+AppExtensions.swift in Sources */,
-				AC88346821057D9400C06EA6 /* QuickVoteService.swift in Sources */,
+				AC88346821057D9400C06EA6 /* QuickVoteServer.swift in Sources */,
 				AC07756420FD9BE2004AA20F /* AppDelegate.swift in Sources */,
 				AC8834702105964100C06EA6 /* SessinoGuestViewController.swift in Sources */,
 				AC88345E2104E5F200C06EA6 /* UIApplication+AppExtensions.swift in Sources */,

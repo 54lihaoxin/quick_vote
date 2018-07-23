@@ -10,7 +10,7 @@ import UIKit
 
 class SessinoHostViewController: UIViewController {
     
-    fileprivate let serviceIO = QuickVoteServiceClient(host: QuickVoteService.shared.netService)
+    fileprivate let serviceIO = QuickVoteServiceClient(host: QuickVoteServer.shared.netService)
 
     override func loadView() {
         super.loadView()
@@ -24,7 +24,7 @@ class SessinoHostViewController: UIViewController {
         }
         
         applyAppTheme()
-        QuickVoteService.shared.start()
+        QuickVoteServer.shared.start()
         serviceIO.start()
     }
 }
@@ -34,7 +34,7 @@ class SessinoHostViewController: UIViewController {
 private extension SessinoHostViewController {
     
     @objc func quitSession() {
-        QuickVoteService.shared.stop()
+        QuickVoteServer.shared.stop()
         dismiss(animated: true, completion: nil)
     }
 }

@@ -1,5 +1,5 @@
 //
-//  QuickVoteService.swift
+//  QuickVoteServer.swift
 //  QuickVote
 //
 //  Created by Haoxin Li on 7/22/18.
@@ -9,15 +9,15 @@
 import Foundation
 import UIKit
 
-final class QuickVoteService: NSObject {
+final class QuickVoteServer: NSObject {
     
     static let domain = "local"
     static let typeID = "_quickvote._tcp"
-    static let shared = QuickVoteService()
+    static let shared = QuickVoteServer()
     
     fileprivate(set) lazy var netService: NetService = {
-        let service = NetService(domain: QuickVoteService.domain,
-                                 type: QuickVoteService.typeID,
+        let service = NetService(domain: QuickVoteServer.domain,
+                                 type: QuickVoteServer.typeID,
                                  name: UserDefaults.standard.displayName ?? UIDevice.current.name)
         service.delegate = self
         service.includesPeerToPeer = true
@@ -30,7 +30,7 @@ final class QuickVoteService: NSObject {
 
 // MARK: - API
 
-extension QuickVoteService {
+extension QuickVoteServer {
     
     func start() {
         guard isNetServicePublished == false else {
@@ -46,7 +46,7 @@ extension QuickVoteService {
 
 // MARK: - NetServiceDelegate
 
-extension QuickVoteService: NetServiceDelegate {
+extension QuickVoteServer: NetServiceDelegate {
     
     func netServiceWillPublish(_ sender: NetService) {
         print("\(type(of: self)).\(#function)")

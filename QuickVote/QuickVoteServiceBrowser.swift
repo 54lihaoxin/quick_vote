@@ -26,7 +26,7 @@ final class QuickVoteServiceBrowser: NSObject {
     private(set) var services: [NetService] = []
     
     fileprivate func addService(_ service: NetService) {
-        guard service != QuickVoteService.shared.netService else {
+        guard service != QuickVoteServer.shared.netService else {
             return
         }
         services.append(service)
@@ -47,7 +47,7 @@ final class QuickVoteServiceBrowser: NSObject {
 extension QuickVoteServiceBrowser {
     
     func start() {
-        browser.searchForServices(ofType: QuickVoteService.typeID, inDomain: QuickVoteService.domain)
+        browser.searchForServices(ofType: QuickVoteServer.typeID, inDomain: QuickVoteServer.domain)
     }
     
     func stop() {

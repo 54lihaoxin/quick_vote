@@ -11,7 +11,6 @@
 		AC07756B20FD9BE8004AA20F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AC07756A20FD9BE8004AA20F /* Assets.xcassets */; };
 		AC07756E20FD9BE8004AA20F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC07756C20FD9BE8004AA20F /* LaunchScreen.storyboard */; };
 		AC07757920FD9BE8004AA20F /* QuickVoteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC07757820FD9BE8004AA20F /* QuickVoteTests.swift */; };
-		AC07758420FD9E2D004AA20F /* MultipeerConnectivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC07758320FD9E2D004AA20F /* MultipeerConnectivityManager.swift */; };
 		AC8432792104DBCD00509CB9 /* SessionListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8432772104DBCD00509CB9 /* SessionListViewController.swift */; };
 		AC84327C2104DDDF00509CB9 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC84327B2104DDDF00509CB9 /* Protocols.swift */; };
 		AC84327E2104DEEA00509CB9 /* UIView+AppExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC84327D2104DEEA00509CB9 /* UIView+AppExtensions.swift */; };
@@ -43,7 +42,6 @@
 		AC07757420FD9BE8004AA20F /* QuickVoteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuickVoteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC07757820FD9BE8004AA20F /* QuickVoteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickVoteTests.swift; sourceTree = "<group>"; };
 		AC07757A20FD9BE8004AA20F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AC07758320FD9E2D004AA20F /* MultipeerConnectivityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipeerConnectivityManager.swift; sourceTree = "<group>"; };
 		AC8432772104DBCD00509CB9 /* SessionListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionListViewController.swift; sourceTree = "<group>"; };
 		AC84327B2104DDDF00509CB9 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		AC84327D2104DEEA00509CB9 /* UIView+AppExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+AppExtensions.swift"; sourceTree = "<group>"; };
@@ -100,7 +98,6 @@
 				AC8834632104FE7600C06EA6 /* AppNotification.swift */,
 				AC88346721057D9400C06EA6 /* QuickVoteService.swift */,
 				AC8834692105842500C06EA6 /* QuickVoteServiceBrowser.swift */,
-				AC07758320FD9E2D004AA20F /* MultipeerConnectivityManager.swift */,
 				AC84327B2104DDDF00509CB9 /* Protocols.swift */,
 				AC8432772104DBCD00509CB9 /* SessionListViewController.swift */,
 				AC07756A20FD9BE8004AA20F /* Assets.xcassets */,
@@ -237,7 +234,6 @@
 				AC8834642104FE7600C06EA6 /* AppNotification.swift in Sources */,
 				AC88346A2105842500C06EA6 /* QuickVoteServiceBrowser.swift in Sources */,
 				AC8432792104DBCD00509CB9 /* SessionListViewController.swift in Sources */,
-				AC07758420FD9E2D004AA20F /* MultipeerConnectivityManager.swift in Sources */,
 				AC8432802104E2DF00509CB9 /* UIColor+AppExtensions.swift in Sources */,
 				AC88346821057D9400C06EA6 /* QuickVoteService.swift in Sources */,
 				AC07756420FD9BE2004AA20F /* AppDelegate.swift in Sources */,

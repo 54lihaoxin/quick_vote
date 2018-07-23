@@ -10,6 +10,8 @@ import Foundation
 import MultipeerConnectivity
 
 final class MultipeerConnectivityManager: NSObject {
+    var advertisers: [MCNearbyServiceAdvertiser] = []
+    
     
     typealias DiscoveryInfoDictionary = [String: String]
     
@@ -39,7 +41,9 @@ final class MultipeerConnectivityManager: NSObject {
         case inactive
     }
     
-    struct PeerDiscoveryUpdateNotification: AppNotification {}
+    struct PeerDiscoveryUpdateNotification: AppNotification {
+        let peerID: MCPeerID
+    }
     
     fileprivate static let inviteTimeout: TimeInterval = 30
     fileprivate static let serviceType = "hxl-quickvote" // `serviceType` should be in the same format as a Bonjour service type: up to 15 characters long and valid characters include ASCII lowercase letters, numbers, and the hyphen. A short name that distinguishes itself from unrelated services is recommended.
@@ -47,6 +51,7 @@ final class MultipeerConnectivityManager: NSObject {
     fileprivate var mode = Mode.inactive
     fileprivate var discoveredPeerInfo: [MCPeerID: DiscoveryInfo] = [:]
     fileprivate var connectedPeerIDs: Set<MCPeerID> = []
+    fileprivate var k_peerID_vs_v_session: [MCPeerID: MCSession] = [:]
     
     fileprivate var advertiser: MCNearbyServiceAdvertiser?
     fileprivate lazy var browser: MCNearbyServiceBrowser = {
@@ -54,11 +59,6 @@ final class MultipeerConnectivityManager: NSObject {
         browser = MCNearbyServiceBrowser(peer: peerID, serviceType: MultipeerConnectivityManager.serviceType)
         browser.delegate = self
         return browser
-    }()
-    fileprivate lazy var session: MCSession = {
-        let session = MCSession(peer: peerID)
-        session.delegate = self
-        return session
     }()
     
     let peerID: MCPeerID
@@ -91,6 +91,41 @@ extension MultipeerConnectivityManager {
         print("\(#function)", peerID.displayName)
         updateMode(.browser)
     }
+    
+    func startHostingSession() {
+        print("\(#function)", peerID.displayName)
+        updateMode(.host)
+    }
+    
+    func quitHostingSession() {
+        print("\(#function)", peerID.displayName)
+        updateMode(.browser)
+    }
+    
+    
+    func advertiseAsGuest() {
+        for i in 0...20 {
+            let peerID = MCPeerID(displayName: "\(UserDefaults.standard.displayName ?? "SomeName")-\(i)")
+            let advertiser = MCNearbyServiceAdvertiser(peer: peerID,
+                                                       discoveryInfo: DiscoveryInfo(mode: mode).dictionary,
+                                                       serviceType: MultipeerConnectivityManager.serviceType)
+            advertiser.startAdvertisingPeer()
+            advertisers.append(advertiser)
+        }
+    }
+    
+    func disconnect() {
+        let s = session(for: peerID)
+        s.disconnect()
+        mode = .browser
+        self.advertiser?.stopAdvertisingPeer()
+        let advertiser = MCNearbyServiceAdvertiser(peer: peerID,
+                                                   discoveryInfo: DiscoveryInfo(mode: mode).dictionary,
+                                                   serviceType: MultipeerConnectivityManager.serviceType)
+        self.advertiser = advertiser
+        advertiser.delegate = self
+        advertiser.startAdvertisingPeer()
+    }
 }
 
 // MARK: - MCNearbyServiceAdvertiserDelegate
@@ -99,7 +134,7 @@ extension MultipeerConnectivityManager: MCNearbyServiceAdvertiserDelegate {
     
     func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Void) {
         print("\(#function)")
-        invitationHandler(true, session)
+        invitationHandler(true, session(for: peerID))
     }
     
     func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didNotStartAdvertisingPeer error: Error) {
@@ -117,9 +152,12 @@ extension MultipeerConnectivityManager: MCNearbyServiceBrowserDelegate {
             assertionFailure("\(#function) discovery info is nil")
             return
         }
-        discoveredPeerInfo[peerID] = DiscoveryInfo(dictionary: info)
-        //browser.invitePeer(peerID, to: session, withContext: nil, timeout: MultipeerConnectivityManager.inviteTimeout) // TODO:
-        PeerDiscoveryUpdateNotification().post()
+        let discoveryInfo = DiscoveryInfo(dictionary: info)
+        discoveredPeerInfo[peerID] = discoveryInfo
+//        if mode == .host, discoveryInfo.mode == .guest { // host invite guest
+            browser.invitePeer(peerID, to: session(for: peerID), withContext: nil, timeout: MultipeerConnectivityManager.inviteTimeout)
+//        }
+        PeerDiscoveryUpdateNotification(peerID: peerID).post()
     }
     
     func browser(_ browser: MCNearbyServiceBrowser, didNotStartBrowsingForPeers error: Error) {
@@ -129,7 +167,7 @@ extension MultipeerConnectivityManager: MCNearbyServiceBrowserDelegate {
     func browser(_ browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {
         print("\(#function)", peerID)
         discoveredPeerInfo.removeValue(forKey: peerID)
-        PeerDiscoveryUpdateNotification().post()
+        PeerDiscoveryUpdateNotification(peerID: peerID).post()
     }
 }
 
@@ -188,6 +226,24 @@ private extension MultipeerConnectivityManager {
     
     func updateMode(_ mode: Mode) {
         print("\(#function)", mode) // TODO:
+        
+        guard self.mode != mode else {
+            return
+        }
+        
+        advertiser?.stopAdvertisingPeer()
+        advertiser = nil
+        
+        switch self.mode { // session specific handling
+        case .host:
+            for session in k_peerID_vs_v_session.values {
+                session.disconnect()
+            }
+            k_peerID_vs_v_session.removeAll()
+        case .browser, .guest, .inactive:
+            break
+        }
+        
         self.mode = mode
         
         switch mode { // advertiser specific handling
@@ -199,8 +255,7 @@ private extension MultipeerConnectivityManager {
             advertiser.delegate = self
             advertiser.startAdvertisingPeer()
         case .inactive:
-            advertiser?.stopAdvertisingPeer()
-            advertiser = nil
+            break
         }
         
         switch mode { // browser specific handling
@@ -208,6 +263,17 @@ private extension MultipeerConnectivityManager {
             browser.startBrowsingForPeers()
         case .inactive:
             browser.stopBrowsingForPeers()
+        }
+    }
+    
+    func session(for peerID: MCPeerID) -> MCSession {
+        if let existedSession = k_peerID_vs_v_session[peerID] {
+            return existedSession
+        } else {
+            let session = MCSession(peer: peerID)
+            session.delegate = self
+            k_peerID_vs_v_session[peerID] = session
+            return session
         }
     }
 }

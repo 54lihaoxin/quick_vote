@@ -20,6 +20,7 @@
 		AC88345E2104E5F200C06EA6 /* UIApplication+AppExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC88345D2104E5F200C06EA6 /* UIApplication+AppExtensions.swift */; };
 		AC8834602104ED0600C06EA6 /* UserDefaults+AppExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC88345F2104ED0600C06EA6 /* UserDefaults+AppExtensions.swift */; };
 		AC8834642104FE7600C06EA6 /* AppNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8834632104FE7600C06EA6 /* AppNotification.swift */; };
+		AC8834662105297B00C06EA6 /* SessionHostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8834652105297B00C06EA6 /* SessionHostViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,7 @@
 		AC88345D2104E5F200C06EA6 /* UIApplication+AppExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+AppExtensions.swift"; sourceTree = "<group>"; };
 		AC88345F2104ED0600C06EA6 /* UserDefaults+AppExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+AppExtensions.swift"; sourceTree = "<group>"; };
 		AC8834632104FE7600C06EA6 /* AppNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNotification.swift; sourceTree = "<group>"; };
+		AC8834652105297B00C06EA6 /* SessionHostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionHostViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 				AC8834632104FE7600C06EA6 /* AppNotification.swift */,
 				AC07758320FD9E2D004AA20F /* MultipeerConnectivityManager.swift */,
 				AC84327B2104DDDF00509CB9 /* Protocols.swift */,
+				AC8834652105297B00C06EA6 /* SessionHostViewController.swift */,
 				AC8432772104DBCD00509CB9 /* SessionListViewController.swift */,
 				AC07756A20FD9BE8004AA20F /* Assets.xcassets */,
 				AC07756C20FD9BE8004AA20F /* LaunchScreen.storyboard */,
@@ -235,6 +238,7 @@
 				AC07756420FD9BE2004AA20F /* AppDelegate.swift in Sources */,
 				AC88345E2104E5F200C06EA6 /* UIApplication+AppExtensions.swift in Sources */,
 				AC84327C2104DDDF00509CB9 /* Protocols.swift in Sources */,
+				AC8834662105297B00C06EA6 /* SessionHostViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

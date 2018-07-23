@@ -69,7 +69,7 @@ extension SessionListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch Section.section(for: section) {
         case .host:
-            return 1 // +1 for creating a new voting session
+            return 3 // +1 for creating a new voting session
         case .guest:
             return hostPeerIDs.count
         }
@@ -91,7 +91,16 @@ extension SessionListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         switch Section.section(for: indexPath.section) {
         case .host:
-            cell.textLabel?.text = NSLocalizedString("Create a new voting session", comment: "")
+            switch indexPath.row {
+            case 0:
+                cell.textLabel?.text = NSLocalizedString("Create a new voting session", comment: "")
+            case 1:
+                cell.textLabel?.text = "Create 20 sessions"
+            case 2:
+                cell.textLabel?.text = "Disconnect"
+            default:
+                cell.textLabel?.text = "NA"
+            }
         case .guest:
             cell.textLabel?.text = hostPeerIDs[indexPath.row].displayName
         }
@@ -99,6 +108,27 @@ extension SessionListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        switch Section.section(for: indexPath.section) {
+        case .host:
+            guard let manager = AppDelegate.current.multipeerConnectivityManager else {
+                assertionFailure("\(#function) multipeerConnectivityManager is nil")
+                return
+            }
+            switch indexPath.row {
+            case 0:
+                let nav = UINavigationController(rootViewController: SessionHostViewController(multipeerConnectivityManager: manager))
+                present(nav, animated: true, completion: nil)
+            case 1:
+                manager.advertiseAsGuest()
+            case 2:
+                manager.disconnect()
+            default:
+                break
+            }
+            
+        case .guest:
+            break
+        }
     }
 }
 

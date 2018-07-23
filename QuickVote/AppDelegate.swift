@@ -19,7 +19,6 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         nav.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
         return nav
     }()
-    private(set) var multipeerConnectivityManager: MultipeerConnectivityManager?
     
     static var current: AppDelegate {
         guard let delegate = UIApplication.shared.delegate as? AppDelegate else {
@@ -32,19 +31,15 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         window.rootViewController = rootViewController
         window.makeKeyAndVisible()
         
-        QuickVoteService.shared.start()
-        
-//        if let displayName = UserDefaults.standard.displayName {
-//            let manager = MultipeerConnectivityManager(with: displayName)
-//            multipeerConnectivityManager = manager
-//            manager.startBrowsingForPeers()
-//        } else { // first app launch without display name
-//            UIAlertController.showUserNameInputAlert(defaultValue: UIDevice.current.name) { [weak self] newName in
-//                UserDefaults.standard.setDisplayName(newName)
-//                let manager = MultipeerConnectivityManager(with: newName)
-//                self?.multipeerConnectivityManager = manager
-//                manager.startBrowsingForPeers()
-//            }
-//        }
+        if let displayName = UserDefaults.standard.displayName, !displayName.isEmpty {
+            QuickVoteService.shared.start()
+            QuickVoteServiceBrowser.shared.start()
+        } else { // first app launch without display name
+            UIAlertController.showUserNameInputAlert(defaultValue: UIDevice.current.name) { newName in
+                UserDefaults.standard.setDisplayName(newName)
+                QuickVoteService.shared.start()
+                QuickVoteServiceBrowser.shared.start()
+            }
+        }
     }
 }

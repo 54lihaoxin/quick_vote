@@ -12,11 +12,10 @@ import UIKit
 final class SessionListViewController: UIViewController {
     
     fileprivate enum Section: Int, CaseIterable {
-        case host
-        case guest
-        //case browser // TODO:
+        case hostSession
+        case joinSession
         
-        static let allCases: [Section] = [host, guest]
+        static let allCases: [Section] = [hostSession, joinSession]
         
         static func section(for sectionNumber: Int) -> Section {
             guard let section = Section(rawValue: sectionNumber) else {
@@ -27,9 +26,9 @@ final class SessionListViewController: UIViewController {
         
         var sectionTitle: String {
             switch self {
-            case .host:
+            case .hostSession:
                 return NSLocalizedString("Host a voting session", comment: "")
-            case .guest:
+            case .joinSession:
                 return NSLocalizedString("Join a voting session", comment: "")
             }
         }
@@ -37,7 +36,7 @@ final class SessionListViewController: UIViewController {
     
     fileprivate static let cellReuseIdentifier = "ReuseID"
     
-    fileprivate var hostPeerIDs: [MCPeerID] = []
+    fileprivate var otherServices: [NetService] = []
     
     fileprivate lazy var tableView: UITableView = {
         let tv = UITableView(frame: .zero, style: .grouped)
@@ -68,10 +67,10 @@ extension SessionListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch Section.section(for: section) {
-        case .host:
+        case .hostSession:
             return 1 // +1 for creating a new voting session
-        case .guest:
-            return hostPeerIDs.count
+        case .joinSession:
+            return otherServices.count
         }
     }
     
@@ -90,10 +89,10 @@ extension SessionListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         switch Section.section(for: indexPath.section) {
-        case .host:
+        case .hostSession:
             cell.textLabel?.text = NSLocalizedString("Create a new voting session", comment: "")
-        case .guest:
-            cell.textLabel?.text = hostPeerIDs[indexPath.row].displayName
+        case .joinSession:
+            cell.textLabel?.text = otherServices[indexPath.row].name
         }
     }
     
@@ -108,9 +107,9 @@ extension SessionListViewController: AppNotificationObserver {
     
     func handleNotification(_ notification: Notification) {
         switch notification.name {
-        case MultipeerConnectivityManager.PeerDiscoveryUpdateNotification.name:
+        case QuickVoteServiceBrowser.ServiceListUpdateNotification.name:
             print("handleNotification", notification)
-            hostPeerIDs = AppDelegate.current.multipeerConnectivityManager?.hostPeerIDs ?? []
+            otherServices = QuickVoteServiceBrowser.shared.services
             tableView.reloadData()
         default:
             assertionFailure("\(#function) notification is observed but not handled: \(notification.name)")
@@ -123,6 +122,6 @@ extension SessionListViewController: AppNotificationObserver {
 private extension SessionListViewController {
     
     func registerNotifications() {
-        MultipeerConnectivityManager.PeerDiscoveryUpdateNotification.addObserver(self)
+        QuickVoteServiceBrowser.ServiceListUpdateNotification.addObserver(self)
     }
 }

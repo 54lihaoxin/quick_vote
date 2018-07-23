@@ -11,7 +11,7 @@ import UIKit
 class SessinoGuestViewController: UIViewController {
     
     fileprivate let hostService: NetService
-    fileprivate let serviceIO: QuickVoteServiceClient
+    fileprivate let serviceIO: QuickVoteClient
 
     required init?(coder aDecoder: NSCoder) {
         fatalError()
@@ -19,7 +19,7 @@ class SessinoGuestViewController: UIViewController {
     
     init(host: NetService) {
         hostService = host
-        serviceIO = QuickVoteServiceClient(host: host)
+        serviceIO = QuickVoteClient(host: host)
         super.init(nibName: nil, bundle: nil)
     }
     

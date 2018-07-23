@@ -10,7 +10,7 @@ import UIKit
 
 class SessinoHostViewController: UIViewController {
     
-    fileprivate let serviceIO = QuickVoteServiceClient(host: QuickVoteServer.shared.netService)
+    fileprivate let serviceIO = QuickVoteClient(host: QuickVoteServer.shared.netService)
 
     override func loadView() {
         super.loadView()

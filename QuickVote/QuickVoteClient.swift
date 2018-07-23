@@ -1,5 +1,5 @@
 //
-//  QuickVoteServiceClient.swift
+//  QuickVoteClient.swift
 //  QuickVote
 //
 //  Created by Haoxin Li on 7/22/18.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class QuickVoteServiceClient: NSObject {
+final class QuickVoteClient: NSObject {
     
     fileprivate let hostService: NetService
     fileprivate var inputStream: InputStream?
@@ -25,7 +25,7 @@ final class QuickVoteServiceClient: NSObject {
 
 // MARK: - API
 
-extension QuickVoteServiceClient {
+extension QuickVoteClient {
     
     @discardableResult func start() -> Bool {
         var inputStream: InputStream?
@@ -46,7 +46,7 @@ extension QuickVoteServiceClient {
 
 // MARK: - NSStreamDelegate
 
-extension QuickVoteServiceClient: StreamDelegate {
+extension QuickVoteClient: StreamDelegate {
     
     func stream(_ aStream: Stream, handle eventCode: Stream.Event) {
         let streamID = aStream == inputStream ? "`inputStream`" : (aStream == outputStream ? "`outputStream`" : "unknown stream")
@@ -69,7 +69,7 @@ extension QuickVoteServiceClient: StreamDelegate {
 
 // MARK: - private helpers
 
-private extension QuickVoteServiceClient {
+private extension QuickVoteClient {
     
     func openStreams() {
         guard let inputStream = inputStream, let outputStream = outputStream else {

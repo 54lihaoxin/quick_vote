@@ -29,6 +29,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
             QuickVoteServiceBrowser.shared.start()
         } else { // first app launch without display name
             UIAlertController.showUserNameInputAlert(defaultValue: UIDevice.current.name) { newName in
+                // TODO: if new name has more than 63 characters, ask for user input again
                 UserDefaults.standard.setDisplayName(newName)
                 QuickVoteServiceBrowser.shared.start()
             }

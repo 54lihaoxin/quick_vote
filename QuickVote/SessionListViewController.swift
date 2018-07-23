@@ -9,7 +9,7 @@
 import MultipeerConnectivity
 import UIKit
 
-class SessionListViewController: UIViewController {
+final class SessionListViewController: UIViewController {
     
     fileprivate enum Section: Int, CaseIterable {
         case host

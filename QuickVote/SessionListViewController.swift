@@ -53,6 +53,7 @@ final class SessionListViewController: UIViewController {
         view.addSubview(tableView)
         tableView.activateLayoutAnchorsWithSuperView()
         
+        applyAppTheme()
         registerNotifications()
     }
 }

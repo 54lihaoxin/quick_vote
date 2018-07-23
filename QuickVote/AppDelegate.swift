@@ -12,13 +12,7 @@ import UIKit
 final class AppDelegate: UIResponder, UIApplicationDelegate {
 
     let window = UIWindow(frame: UIScreen.main.bounds)
-    let rootViewController: UINavigationController = {
-        let nav = UINavigationController(rootViewController: SessionListViewController())
-        nav.navigationBar.barTintColor = .appTint
-        nav.navigationBar.tintColor = .white
-        nav.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
-        return nav
-    }()
+    let rootViewController = UINavigationController(rootViewController: SessionListViewController())
     
     static var current: AppDelegate {
         guard let delegate = UIApplication.shared.delegate as? AppDelegate else {

@@ -21,6 +21,7 @@ class SessinoHostViewController: UIViewController {
                                                                action: #selector(quitHostingSession))
         }
         
+        applyAppTheme()
         QuickVoteService.shared.start()
     }
 }

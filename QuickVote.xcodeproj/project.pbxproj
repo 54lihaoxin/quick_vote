@@ -22,6 +22,7 @@
 		AC88346821057D9400C06EA6 /* QuickVoteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC88346721057D9400C06EA6 /* QuickVoteService.swift */; };
 		AC88346A2105842500C06EA6 /* QuickVoteServiceBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8834692105842500C06EA6 /* QuickVoteServiceBrowser.swift */; };
 		AC88346C210592D100C06EA6 /* SessinoHostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC88346B210592D100C06EA6 /* SessinoHostViewController.swift */; };
+		AC88346E210594F100C06EA6 /* UIViewController+AppExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC88346D210594F100C06EA6 /* UIViewController+AppExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		AC88346721057D9400C06EA6 /* QuickVoteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickVoteService.swift; sourceTree = "<group>"; };
 		AC8834692105842500C06EA6 /* QuickVoteServiceBrowser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickVoteServiceBrowser.swift; sourceTree = "<group>"; };
 		AC88346B210592D100C06EA6 /* SessinoHostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessinoHostViewController.swift; sourceTree = "<group>"; };
+		AC88346D210594F100C06EA6 /* UIViewController+AppExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+AppExtensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +128,7 @@
 				AC88345D2104E5F200C06EA6 /* UIApplication+AppExtensions.swift */,
 				AC84327F2104E2DF00509CB9 /* UIColor+AppExtensions.swift */,
 				AC84327D2104DEEA00509CB9 /* UIView+AppExtensions.swift */,
+				AC88346D210594F100C06EA6 /* UIViewController+AppExtensions.swift */,
 				AC88345F2104ED0600C06EA6 /* UserDefaults+AppExtensions.swift */,
 			);
 			name = Extensions;
@@ -233,6 +236,7 @@
 			files = (
 				AC84327E2104DEEA00509CB9 /* UIView+AppExtensions.swift in Sources */,
 				AC8834602104ED0600C06EA6 /* UserDefaults+AppExtensions.swift in Sources */,
+				AC88346E210594F100C06EA6 /* UIViewController+AppExtensions.swift in Sources */,
 				AC88345C2104E4AF00C06EA6 /* UIAlertController+AppExtensions.swift in Sources */,
 				AC8834642104FE7600C06EA6 /* AppNotification.swift in Sources */,
 				AC88346A2105842500C06EA6 /* QuickVoteServiceBrowser.swift in Sources */,

@@ -12,7 +12,7 @@ extension UIView {
     
     func activateLayoutAnchorsWithSuperView(insets: UIEdgeInsets = .zero) {
         guard let superview = superview else {
-            assertionFailure("\(#function) super view not found")
+            assertionFailure("\(type(of: self)).\(#function) super view not found")
             return
         }
         translatesAutoresizingMaskIntoConstraints = false // Note: layout goes wrong if this is not set to false

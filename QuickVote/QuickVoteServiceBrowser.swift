@@ -47,7 +47,7 @@ final class QuickVoteServiceBrowser: NSObject {
 extension QuickVoteServiceBrowser {
     
     func start() {
-        browser.searchForServices(ofType: QuickVoteService.type, inDomain: QuickVoteService.domain)
+        browser.searchForServices(ofType: QuickVoteService.typeID, inDomain: QuickVoteService.domain)
     }
     
     func stop() {
@@ -61,32 +61,32 @@ extension QuickVoteServiceBrowser {
 extension QuickVoteServiceBrowser: NetServiceBrowserDelegate {
     
     func netServiceBrowserWillSearch(_ browser: NetServiceBrowser) {
-        print("\(#function)")
+        print("\(type(of: self)).\(#function)")
     }
     
     func netServiceBrowserDidStopSearch(_ browser: NetServiceBrowser) {
-        print("\(#function)")
+        print("\(type(of: self)).\(#function)")
     }
     
     func netServiceBrowser(_ browser: NetServiceBrowser, didNotSearch errorDict: [String : NSNumber]) {
-        print("\(#function)")
+        print("\(type(of: self)).\(#function)")
     }
     
     func netServiceBrowser(_ browser: NetServiceBrowser, didFindDomain domainString: String, moreComing: Bool) {
-        print("\(#function)")
+        print("\(type(of: self)).\(#function)")
     }
     
     func netServiceBrowser(_ browser: NetServiceBrowser, didFind service: NetService, moreComing: Bool) {
-        print("\(#function)")
+        print("\(type(of: self)).\(#function)")
         addService(service)
     }
     
     func netServiceBrowser(_ browser: NetServiceBrowser, didRemoveDomain domainString: String, moreComing: Bool) {
-        print("\(#function)")
+        print("\(type(of: self)).\(#function)")
     }
     
     func netServiceBrowser(_ browser: NetServiceBrowser, didRemove service: NetService, moreComing: Bool) {
-        print("\(#function)")
+        print("\(type(of: self)).\(#function)")
         removeService(service)
     }
 }

@@ -117,11 +117,11 @@ extension SessionListViewController: AppNotificationObserver {
     func handleNotification(_ notification: Notification) {
         switch notification.name {
         case QuickVoteServiceBrowser.ServiceListUpdateNotification.name:
-            print("handleNotification", notification)
+            print("\(type(of: self)).\(#function)", notification.name)
             otherServices = QuickVoteServiceBrowser.shared.services
             tableView.reloadData()
         default:
-            assertionFailure("\(#function) notification is observed but not handled: \(notification.name)")
+            assertionFailure("\(type(of: self)).\(#function) notification is observed but not handled: \(notification.name)")
         }
     }
 }

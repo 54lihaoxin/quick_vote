@@ -12,12 +12,12 @@ import UIKit
 final class QuickVoteService: NSObject {
     
     static let domain = "local"
-    static let type = "_quickvote._tcp"
+    static let typeID = "_quickvote._tcp"
     static let shared = QuickVoteService()
     
     fileprivate(set) lazy var netService: NetService = {
         let service = NetService(domain: QuickVoteService.domain,
-                                 type: QuickVoteService.type,
+                                 type: QuickVoteService.typeID,
                                  name: UserDefaults.standard.displayName ?? UIDevice.current.name)
         service.delegate = self
         service.includesPeerToPeer = true
@@ -49,40 +49,40 @@ extension QuickVoteService {
 extension QuickVoteService: NetServiceDelegate {
     
     func netServiceWillPublish(_ sender: NetService) {
-        print("\(#function)")
+        print("\(type(of: self)).\(#function)")
     }
     
     func netServiceDidPublish(_ sender: NetService) {
-        print("\(#function)")
+        print("\(type(of: self)).\(#function)")
         isNetServicePublished = true
     }
     
     func netService(_ sender: NetService, didNotPublish errorDict: [String : NSNumber]) {
-        print("\(#function)")
+        print("\(type(of: self)).\(#function)")
     }
     
     func netServiceWillResolve(_ sender: NetService) {
-        print("\(#function)")
+        print("\(type(of: self)).\(#function)")
     }
     
     func netServiceDidResolveAddress(_ sender: NetService) {
-        print("\(#function)")
+        print("\(type(of: self)).\(#function)")
     }
     
     func netService(_ sender: NetService, didNotResolve errorDict: [String : NSNumber]) {
-        print("\(#function)")
+        print("\(type(of: self)).\(#function)")
     }
     
     func netService(_ sender: NetService, didAcceptConnectionWith inputStream: InputStream, outputStream: OutputStream) {
-        print("\(#function)")
+        print("\(type(of: self)).\(#function)")
     }
     
     func netService(_ sender: NetService, didUpdateTXTRecord data: Data) {
-        print("\(#function)")
+        print("\(type(of: self)).\(#function)")
     }
     
     func netServiceDidStop(_ sender: NetService) {
-        print("\(#function)")
+        print("\(type(of: self)).\(#function)")
         isNetServicePublished = false
     }
 }

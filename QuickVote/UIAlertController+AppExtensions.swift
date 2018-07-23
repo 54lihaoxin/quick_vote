@@ -21,7 +21,7 @@ extension UIAlertController {
         
         let actionHandler: (UIAlertAction) -> Void = { _ in
             guard let nameInputField = alert.textFields?.first else {
-                assertionFailure("\(#function) name input field is missing")
+                assertionFailure("\(type(of: self)).\(#function) name input field is missing")
                 newNameHandler(defaultValue)
                 return
             }

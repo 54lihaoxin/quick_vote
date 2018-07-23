@@ -49,19 +49,20 @@ extension QuickVoteServiceIO {
 extension QuickVoteServiceIO: StreamDelegate {
     
     func stream(_ aStream: Stream, handle eventCode: Stream.Event) {
+        let streamID = aStream == inputStream ? "`inputStream`" : (aStream == outputStream ? "`outputStream`" : "unknown stream")
         switch eventCode {
         case .openCompleted:
-            print("\(#function) .openCompleted")
+            print("\(type(of: self)).\(#function) \(streamID) .openCompleted")
         case .hasBytesAvailable:
-            print("\(#function) .hasBytesAvailable")
+            print("\(type(of: self)).\(#function) \(streamID) .hasBytesAvailable")
         case .hasSpaceAvailable:
-            print("\(#function) .hasSpaceAvailable")
+            print("\(type(of: self)).\(#function) \(streamID) .hasSpaceAvailable")
         case .errorOccurred:
-            print("\(#function) .errorOccurred")
+            print("\(type(of: self)).\(#function) \(streamID) .errorOccurred")
         case .endEncountered:
-            print("\(#function) .endEncountered")
+            print("\(type(of: self)).\(#function) \(streamID) .endEncountered")
         default:
-            assertionFailure("\(#function) unhandled event code \(eventCode)")
+            assertionFailure("\(type(of: self)).\(#function) \(streamID) unhandled event code \(eventCode)")
         }
     }
 }
@@ -72,7 +73,7 @@ private extension QuickVoteServiceIO {
     
     func openStreams() {
         guard let inputStream = inputStream, let outputStream = outputStream else {
-            assertionFailure("\(#function) `inputStream` and/or `outputStream` is nil")
+            assertionFailure("\(type(of: self)).\(#function) `inputStream` and/or `outputStream` is nil")
             return
         }
         inputStream.delegate = self

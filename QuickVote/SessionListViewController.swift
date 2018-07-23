@@ -36,7 +36,7 @@ final class SessionListViewController: UIViewController {
     
     fileprivate static let cellReuseIdentifier = "ReuseID"
     
-    fileprivate var otherServices: [NetService] = []
+    fileprivate var hostCandidates: [NetService] = []
     
     fileprivate lazy var tableView: UITableView = {
         let tv = UITableView(frame: .zero, style: .grouped)
@@ -71,7 +71,7 @@ extension SessionListViewController: UITableViewDataSource {
         case .hostSession:
             return 1 // +1 for creating a new voting session
         case .joinSession:
-            return max(1, otherServices.count) // +1 for default no voting session message
+            return max(1, hostCandidates.count) // +1 for default no voting session message
         }
     }
     
@@ -93,10 +93,10 @@ extension SessionListViewController: UITableViewDelegate {
         case .hostSession:
             cell.textLabel?.text = NSLocalizedString("Create a new voting session", comment: "")
         case .joinSession:
-            if otherServices.isEmpty {
+            if hostCandidates.isEmpty {
                 cell.textLabel?.text = NSLocalizedString("No voting session available now", comment: "")
             } else {
-                cell.textLabel?.text = otherServices[indexPath.row].name
+                cell.textLabel?.text = hostCandidates[indexPath.row].name
             }
         }
     }
@@ -108,10 +108,10 @@ extension SessionListViewController: UITableViewDelegate {
             let nav = UINavigationController(rootViewController: SessinoHostViewController())
             present(nav, animated: true, completion: nil)
         case .joinSession:
-            if otherServices.isEmpty {
+            if hostCandidates.isEmpty {
                 // no op
             } else {
-                let nav = UINavigationController(rootViewController: SessinoGuestViewController(host: otherServices[indexPath.row]))
+                let nav = UINavigationController(rootViewController: SessinoGuestViewController(host: hostCandidates[indexPath.row]))
                 present(nav, animated: true, completion: nil)
             }
         }
@@ -125,7 +125,7 @@ extension SessionListViewController: AppNotificationObserver {
     func handleNotification(_ notification: Notification) {
         if let appNotification = QuickVoteServiceBrowser.ServiceListUpdateNotification.appNotification(from: notification) {
             print("\(type(of: self)).\(#function)", appNotification.name)
-            otherServices = QuickVoteServiceBrowser.shared.services
+            hostCandidates = QuickVoteServiceBrowser.shared.services
             tableView.reloadData()
         } else {
             assertionFailure("\(type(of: self)).\(#function) notification is observed but not handled: \(notification.name)")

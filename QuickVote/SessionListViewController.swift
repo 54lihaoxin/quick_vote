@@ -71,7 +71,7 @@ extension SessionListViewController: UITableViewDataSource {
         case .hostSession:
             return 1 // +1 for creating a new voting session
         case .joinSession:
-            return otherServices.count
+            return max(1, otherServices.count) // +1 for default no voting session message
         }
     }
     
@@ -93,7 +93,11 @@ extension SessionListViewController: UITableViewDelegate {
         case .hostSession:
             cell.textLabel?.text = NSLocalizedString("Create a new voting session", comment: "")
         case .joinSession:
-            cell.textLabel?.text = otherServices[indexPath.row].name
+            if otherServices.isEmpty {
+                cell.textLabel?.text = NSLocalizedString("No voting session available now", comment: "")
+            } else {
+                cell.textLabel?.text = otherServices[indexPath.row].name
+            }
         }
     }
     
@@ -104,8 +108,12 @@ extension SessionListViewController: UITableViewDelegate {
             let nav = UINavigationController(rootViewController: SessinoHostViewController())
             present(nav, animated: true, completion: nil)
         case .joinSession:
-            let nav = UINavigationController(rootViewController: SessinoGuestViewController(hostService: otherServices[indexPath.row]))
-            present(nav, animated: true, completion: nil)
+            if otherServices.isEmpty {
+                // no op
+            } else {
+                let nav = UINavigationController(rootViewController: SessinoGuestViewController(hostService: otherServices[indexPath.row]))
+                present(nav, animated: true, completion: nil)
+            }
         }
     }
 }

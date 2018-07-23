@@ -10,14 +10,16 @@ import UIKit
 
 class SessinoGuestViewController: UIViewController {
     
-    fileprivate let host: NetService
+    fileprivate let service: NetService
+    fileprivate let serviceIO: QuickVoteServiceIO
 
     required init?(coder aDecoder: NSCoder) {
         fatalError()
     }
     
-    init(host: NetService) {
-        self.host = host
+    init(hostService: NetService) {
+        service = hostService
+        serviceIO = QuickVoteServiceIO(service: hostService)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -33,6 +35,7 @@ class SessinoGuestViewController: UIViewController {
         }
         
         applyAppTheme()
+        serviceIO.start()
     }
 }
 

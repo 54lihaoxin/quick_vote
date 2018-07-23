@@ -9,6 +9,8 @@
 import UIKit
 
 class SessinoHostViewController: UIViewController {
+    
+    fileprivate let serviceIO = QuickVoteServiceIO(service: QuickVoteService.shared.netService)
 
     override func loadView() {
         super.loadView()
@@ -23,6 +25,7 @@ class SessinoHostViewController: UIViewController {
         
         applyAppTheme()
         QuickVoteService.shared.start()
+        serviceIO.start()
     }
 }
 

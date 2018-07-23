@@ -104,7 +104,7 @@ extension SessionListViewController: UITableViewDelegate {
             let nav = UINavigationController(rootViewController: SessinoHostViewController())
             present(nav, animated: true, completion: nil)
         case .joinSession:
-            let nav = UINavigationController(rootViewController: SessinoGuestViewController(host: otherServices[indexPath.row]))
+            let nav = UINavigationController(rootViewController: SessinoGuestViewController(hostService: otherServices[indexPath.row]))
             present(nav, animated: true, completion: nil)
         }
     }

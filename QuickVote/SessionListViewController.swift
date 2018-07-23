@@ -111,7 +111,7 @@ extension SessionListViewController: UITableViewDelegate {
             if otherServices.isEmpty {
                 // no op
             } else {
-                let nav = UINavigationController(rootViewController: SessinoGuestViewController(hostService: otherServices[indexPath.row]))
+                let nav = UINavigationController(rootViewController: SessinoGuestViewController(host: otherServices[indexPath.row]))
                 present(nav, animated: true, completion: nil)
             }
         }

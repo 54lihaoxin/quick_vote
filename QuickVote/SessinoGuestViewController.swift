@@ -10,16 +10,16 @@ import UIKit
 
 class SessinoGuestViewController: UIViewController {
     
-    fileprivate let service: NetService
-    fileprivate let serviceIO: QuickVoteServiceIO
+    fileprivate let hostService: NetService
+    fileprivate let serviceIO: QuickVoteServiceClient
 
     required init?(coder aDecoder: NSCoder) {
         fatalError()
     }
     
-    init(hostService: NetService) {
-        service = hostService
-        serviceIO = QuickVoteServiceIO(service: hostService)
+    init(host: NetService) {
+        hostService = host
+        serviceIO = QuickVoteServiceClient(host: host)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -47,7 +47,7 @@ extension SessinoGuestViewController: AppNotificationObserver {
     func handleNotification(_ notification: Notification) {
         if let appNotification = QuickVoteServiceBrowser.ServiceListUpdateNotification.appNotification(from: notification) {
             print("\(type(of: self)).\(#function)", appNotification.name)
-            if !QuickVoteServiceBrowser.shared.services.contains(service) {
+            if !QuickVoteServiceBrowser.shared.services.contains(hostService) {
                 quitSession() // TODO: show user friendly message
             }
         } else {

@@ -24,8 +24,12 @@ final class QuickVoteServer: NSObject {
         return service
     }()
     
-    
     fileprivate var isNetServicePublished = false
+    fileprivate var serviceIO: QuickVoteServiceIO?
+    
+    deinit {
+        serviceIO?.closeSteams()
+    }
 }
 
 // MARK: - API
@@ -74,7 +78,15 @@ extension QuickVoteServer: NetServiceDelegate {
     }
     
     func netService(_ sender: NetService, didAcceptConnectionWith inputStream: InputStream, outputStream: OutputStream) {
-        print("\(type(of: self)).\(#function)")
+        print("\(type(of: self)).\(#function)", inputStream, outputStream)
+        guard sender == netService else {
+            assertionFailure("\(type(of: self)).\(#function) sender is not `netService`")
+            return
+        }
+        // The input stream and output stream are the same for different accepted client connections
+        let serviceIO = QuickVoteServiceIO(inputStream: inputStream, outputStream: outputStream)
+        self.serviceIO = serviceIO
+        serviceIO.openStreams()
     }
     
     func netService(_ sender: NetService, didUpdateTXTRecord data: Data) {

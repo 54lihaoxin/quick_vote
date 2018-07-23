@@ -38,6 +38,10 @@ extension QuickVoteService {
         }
         netService.publish(options: .listenForConnections)
     }
+    
+    func stop() {
+        netService.stop()
+    }
 }
 
 // MARK: - NetServiceDelegate

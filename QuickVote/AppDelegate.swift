@@ -32,12 +32,10 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         window.makeKeyAndVisible()
         
         if let displayName = UserDefaults.standard.displayName, !displayName.isEmpty {
-            QuickVoteService.shared.start()
             QuickVoteServiceBrowser.shared.start()
         } else { // first app launch without display name
             UIAlertController.showUserNameInputAlert(defaultValue: UIDevice.current.name) { newName in
                 UserDefaults.standard.setDisplayName(newName)
-                QuickVoteService.shared.start()
                 QuickVoteServiceBrowser.shared.start()
             }
         }

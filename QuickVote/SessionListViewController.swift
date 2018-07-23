@@ -98,6 +98,13 @@ extension SessionListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        switch Section.section(for: indexPath.section) {
+        case .hostSession:
+            let nav = UINavigationController(rootViewController: SessinoHostViewController())
+            present(nav, animated: true, completion: nil)
+        case .joinSession:
+            break // TODO:
+        }
     }
 }
 

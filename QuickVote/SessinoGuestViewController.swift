@@ -1,5 +1,5 @@
 //
-//  SessinoHostViewController.swift
+//  SessinoGuestViewController.swift
 //  QuickVote
 //
 //  Created by Haoxin Li on 7/22/18.
@@ -8,12 +8,23 @@
 
 import UIKit
 
-class SessinoHostViewController: UIViewController {
+class SessinoGuestViewController: UIViewController {
+    
+    fileprivate let host: NetService
 
+    required init?(coder aDecoder: NSCoder) {
+        fatalError()
+    }
+    
+    init(host: NetService) {
+        self.host = host
+        super.init(nibName: nil, bundle: nil)
+    }
+    
     override func loadView() {
         super.loadView()
         
-        title = NSLocalizedString("Session Host", comment: "")
+        title = NSLocalizedString("Joined Session", comment: "")
         if navigationItem.leftBarButtonItem == nil {
             navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Quit", comment: ""),
                                                                style: .plain,
@@ -22,16 +33,14 @@ class SessinoHostViewController: UIViewController {
         }
         
         applyAppTheme()
-        QuickVoteService.shared.start()
     }
 }
 
 // MARK: - private helpers
 
-private extension SessinoHostViewController {
+private extension SessinoGuestViewController {
     
     @objc func quitSession() {
-        QuickVoteService.shared.stop()
         dismiss(animated: true, completion: nil)
     }
 }

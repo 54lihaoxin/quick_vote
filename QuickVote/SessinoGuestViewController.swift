@@ -35,7 +35,25 @@ class SessinoGuestViewController: UIViewController {
         }
         
         applyAppTheme()
+        registerNotifications()
         serviceIO.start()
+    }
+}
+
+// MARK: - AppNotificationObserver
+
+extension SessinoGuestViewController: AppNotificationObserver {
+    
+    func handleNotification(_ notification: Notification) {
+        switch notification.name {
+        case QuickVoteServiceBrowser.ServiceListUpdateNotification.name:
+            print("\(type(of: self)).\(#function)", notification.name)
+            if !QuickVoteServiceBrowser.shared.services.contains(service) {
+                quitSession() // TODO: show user friendly message
+            }
+        default:
+            assertionFailure("\(type(of: self)).\(#function) notification is observed but not handled: \(notification.name)")
+        }
     }
 }
 
@@ -45,5 +63,9 @@ private extension SessinoGuestViewController {
     
     @objc func quitSession() {
         dismiss(animated: true, completion: nil)
+    }
+    
+    func registerNotifications() {
+        QuickVoteServiceBrowser.ServiceListUpdateNotification.addObserver(self)
     }
 }

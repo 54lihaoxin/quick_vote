@@ -32,17 +32,19 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         window.rootViewController = rootViewController
         window.makeKeyAndVisible()
         
-        if let displayName = UserDefaults.standard.displayName {
-            let manager = MultipeerConnectivityManager(with: displayName)
-            multipeerConnectivityManager = manager
-            manager.startBrowsingForPeers()
-        } else { // first app launch without display name
-            UIAlertController.showUserNameInputAlert(defaultValue: UIDevice.current.name) { [weak self] newName in
-                UserDefaults.standard.setDisplayName(newName)
-                let manager = MultipeerConnectivityManager(with: newName)
-                self?.multipeerConnectivityManager = manager
-                manager.startBrowsingForPeers()
-            }
-        }
+        QuickVoteService.shared.start()
+        
+//        if let displayName = UserDefaults.standard.displayName {
+//            let manager = MultipeerConnectivityManager(with: displayName)
+//            multipeerConnectivityManager = manager
+//            manager.startBrowsingForPeers()
+//        } else { // first app launch without display name
+//            UIAlertController.showUserNameInputAlert(defaultValue: UIDevice.current.name) { [weak self] newName in
+//                UserDefaults.standard.setDisplayName(newName)
+//                let manager = MultipeerConnectivityManager(with: newName)
+//                self?.multipeerConnectivityManager = manager
+//                manager.startBrowsingForPeers()
+//            }
+//        }
     }
 }
